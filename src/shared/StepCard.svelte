@@ -10,10 +10,12 @@
 
 <style>
   .step{
+    display: flex;
     width: 60%;
     height: 100vh;
     max-width: 720px;
     margin: 0 auto;
+    align-items: center;
   }
 
   p{
