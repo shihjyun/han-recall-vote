@@ -18,6 +18,8 @@
   },
   "dependencies": {
     "d3": "^5.16.0",
+    "intersection-observer": "^0.10.0",
+    "scrollama": "^2.2.1",
     "sirv-cli": "^0.4.4"
   }
 }
