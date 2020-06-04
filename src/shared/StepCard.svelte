@@ -5,26 +5,31 @@
 
 
 <div class="step" data-step={stepId}>
-  <p>{content}</p>
+  <p>{@html content}</p>
 </div>
 
 <style>
   .step{
+    z-index: 1;
     display: flex;
     width: 60%;
     height: 100vh;
-    max-width: 720px;
     margin: 0 auto;
     align-items: center;
+    border-block-color: black;
   }
 
   p{
+    z-index: 10;
     display: block;
-    padding: 1rem;
+    word-wrap:break-word;
+    margin: 0 auto;
+    padding: 0.8rem;
     height: auto;
-    box-shadow: 0px 2px 4px rgba(0,0,0,0.1);
-    border-radius: 6px;
-    background: rgba(255, 255, 255, 0.842);
+    font-family: 'Noto Sans TC';
+    border: #938585 1px solid;
+    background: rgba(247, 247, 247, 0.9);
+    -webkit-transform: translate3d(0,0,0);
   }
 </style>
 
