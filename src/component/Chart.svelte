@@ -1,9 +1,11 @@
 <script>
-  import { onMount } from "svelte";
-  import { recallTownData, slopeFormatData } from "../stores/RecallData.js";
+  import { onMount, createEventDispatcher  } from "svelte";
+  import { recallTownData, slopeFormatData, helperArgs } from "../stores/RecallData.js";
   import wrap from "../helper/WrapText.js"
   import * as d3 from "d3";
 
+  // create dispatcher
+  let dispatch = createEventDispatcher();
 
   // different device setting
   let isMobile = (window.innerWidth > 1023) ? false : true;
@@ -223,6 +225,18 @@
       .append("path")
       .attr("d", `M${isMobile ? 15 : 20},0 L0,-3 L 0,3Z`)
       .attr("fill", "#272727");
+
+    // set steop needed value to empty store
+    const AddedArgs = {rotateInterpolator, isMobile, votePeoCirSize, voteRateColorScale,
+                      arrowRotate, slopeFormat, townGroupsX, townGroupsY, slopeX, slopeY,
+                      xAxis, formatData, townGroupsWidth, axisPosition, town_size, townSizeColor,
+                      slopeLine}
+
+    helperArgs.update(d => {
+						// poll is something we want to add
+            return AddedArgs;
+        });
+    
   });
   
 
