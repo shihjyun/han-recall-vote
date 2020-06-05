@@ -41,13 +41,13 @@
           ${centrePoint[circleNum].y})`)
           };
 
-  function rotateArrow (circleNum, start, end) {
+  function rotateArrow (circleNum, start, end, duration) {
     d3.select(`#${circleNum}`)
           .transition()
-        .duration(750)
+        .duration(duration)
         .attrTween('transform', () => rotateInterpolator(circleNum, start, end))
           .transition()
-        .duration(750)
+        .duration(duration)
         .attrTween('transform', () => rotateInterpolator(circleNum, end, start))
   }
 
@@ -73,12 +73,15 @@
     drawCompass(svg, 450, 100, 'rgba(252,199,245,0.5)',45, 30, 2)
     drawCompass(svg, 85, 148, '#FCA2F2',14, 90, 3)
 
+    rotateArrow('circle1', -30, 90, 1000)
+    rotateArrow('circle2', 30, -90, 1200)
+    rotateArrow('circle3', 90, -30, 1500)
     
     
     d3.interval(() => {
-      rotateArrow('circle1', -30, 90)
-      rotateArrow('circle2', 30, -90)
-      rotateArrow('circle3', 90, -30)
+      rotateArrow('circle1', -30, 90, 1000)
+      rotateArrow('circle2', 30, -90, 1200)
+      rotateArrow('circle3', 90, -30, 1500)
     }, 1500)
     
   })
