@@ -80,10 +80,17 @@
     
     d3.interval(() => {
       rotateArrow('circle1', -30, 90, 1000)
+    }, 2000)
+
+    d3.interval(() => {
       rotateArrow('circle2', 30, -90, 1200)
+    }, 2400)
+
+    d3.interval(() => {
       rotateArrow('circle3', 90, -30, 1500)
-    }, 1500)
-    
+    }, 3000)
+
+
   })
   
 </script>
