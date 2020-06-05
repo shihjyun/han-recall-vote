@@ -31,5 +31,11 @@
     background: rgba(247, 247, 247, 0.9);
     -webkit-transform: translate3d(0,0,0);
   }
+
+  @media screen and (max-width: 1023px) {
+  p{
+    font-size: 0.8rem;
+  }
+}
 </style>
 

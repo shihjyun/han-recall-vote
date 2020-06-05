@@ -1,7 +1,7 @@
 <script>
   import { onMount } from "svelte";
   import { recallTownData } from "../stores/RecallData.js";
-  import { min, max, select, text, format}  from "d3";
+  import { min, max, select, text, format, selectAll}  from "d3";
 
   onMount(() => {
     const formatData = $recallTownData
@@ -14,6 +14,7 @@
     select('#maxVoteRate text').node().textContent = format(".1%")(maxVoteRate)
     select('#minSupportRate text').node().textContent = format(".1%")(minSupportRate)
     select('#maxSupportRate text').node().textContent = format(".1%")(maxSupportRate)
+
   })
 
   
@@ -22,11 +23,13 @@
 
 <div id="HowToRead">
   <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:serif="http://www.serif.com/" width="100%" height="100%" viewBox="0 0 700 350" version="1.1" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:1.5;">
-    <g transform="matrix(1.68361,1.36846e-48,0,1.68361,19.9721,-21.2)">
-        <text x="236.361px" y="204.681px" style="font-family:'MicrosoftJhengHeiRegular', 'Microsoft JhengHei', sans-serif;font-size:7.128px;fill-opacity:0.6;">*兩次選舉之得票率、罷免案反對率在此泛稱支持率</text>
-    </g>
-    <g transform="matrix(1.68361,-6.16298e-33,0,1.68361,19.9721,-37.3361)">
-        <text x="236.361px" y="204.681px" style="font-family:'MicrosoftJhengHeiRegular', 'Microsoft JhengHei', sans-serif;font-size:7.128px;fill-opacity:0.6;">*期間三類投票之最大值及最小值</text>
+    <g id="notation">
+        <g transform="matrix(1.68361,1.36846e-48,0,1.68361,19.9721,-21.2)">
+            <text x="236.361px" y="204.681px" style="font-family:'MicrosoftJhengHeiRegular', 'Microsoft JhengHei', sans-serif;font-size:7.128px;fill-opacity:0.6;">*兩次選舉之得票率、罷免案反對率在此泛稱支持率</text>
+        </g>
+        <g transform="matrix(1.68361,-6.16298e-33,0,1.68361,19.9721,-37.3361)">
+            <text x="236.361px" y="204.681px" style="font-family:'MicrosoftJhengHeiRegular', 'Microsoft JhengHei', sans-serif;font-size:7.128px;fill-opacity:0.6;">*期間三類投票之最大值及最小值</text>
+        </g>
     </g>
     <g id="circleLegend" transform="matrix(1.16667,0,0,1.16667,-38.7329,-28.164)">
         <g transform="matrix(1.61407e-16,-2.63598,2.01539,1.23407e-16,-216.536,807.697)">
