@@ -124,13 +124,8 @@ export const stepInfo = readable([
     stepEnterUp: function(...Arg){
 
       // remove slope lines group
-      d3.selectAll('#slope-lines path')
-        .each(function(d) { d.totalLength = this.getTotalLength(); })
-        .transition()
-        .duration(400)
-        .attr("stroke-dashoffset", d => d.totalLength)
 
-      d3.selectAll('#slope-lines')
+      d3.selectAll('#slope-lines-20recall, #slope-lines-1820')
         .remove()
 
 
@@ -181,10 +176,10 @@ export const stepInfo = readable([
   },
   {
     step: 4,
-    content: '在看完',
+    content: '接著觀察高雄各區三次投票中對韓國瑜的支持率的趨勢變化',
     stepEnterDown: function(...Arg){
 
-      const slopeFormat2018 = Arg[0].slopeFormat.filter(d => d.vote_type === '2018 直轄市長選舉 韓得票率')
+      const slopeFormat2018 = Arg[0].slopeFormat.filter(d => d.vote_type !== '2020 高雄市長罷免 反對率')
 
       // hide arrow
       d3.selectAll('.town .arrow')
@@ -214,14 +209,15 @@ export const stepInfo = readable([
       // draw slope lines
       d3.select('#town-groups')
             .append("g")
-            .attr('id', 'slope-lines')
+            .attr('id', 'slope-lines-1820')
             .attr("fill", "none")
             .attr('stroke-width', 0.5)
             .attr("stroke", "rgba(16, 14, 14, 0.5)")
           .selectAll("path")
-          .data(groups(Arg[0].slopeFormat, d => d.TOWNNAME))
+          .data(groups(slopeFormat2018, d => d.TOWNNAME))
           .enter()
           .append('path')
+          .attr('class', '_18to20')
           .attr('id', ([key ,]) => key)
           .attr("d", ([, group]) => Arg[0].slopeLine(group))
           .each(function(d) { d.totalLength = this.getTotalLength(); })
@@ -252,21 +248,121 @@ export const stepInfo = readable([
         .attr('opacity', 1)
 
     },
-    stepEnterUp: function(...Arg){},
+    stepEnterUp: function(...Arg){
+      d3.selectAll('#slope-lines-1820 path')
+        .attr("stroke", "rgba(16, 14, 14, 0.5)")
+        .attr('stroke-width', 0.5)
+    },
     stepExitUp: function(...Arg){},
     stepExitDown: function(...Arg){}
   },
   {
     step: 5,
-    content: '這是第五步 這是第五步這是第五步這是第五步',
+    content: '從圖表中可以發現，與直轄市長選舉時相比，總統大選韓國瑜在高雄各區的支持率皆呈劇烈下降趨勢，每區平均下降了 <strong>18.1 %<strong/>',
     stepEnterDown: function(...Arg){},
-    stepEnterUp: function(...Arg){},
+    stepEnterUp: function(...Arg){
+      d3.selectAll('#slope-lines-1820 path')
+        .attr("stroke", "rgba(16, 14, 14, 0.5)")
+        .attr('stroke-width', 0.5)
+    },
     stepExitUp: function(...Arg){},
     stepExitDown: function(...Arg){}
   },
   {
     step: 6,
-    content: '這是第六步 這是第六步 這是第六步 這是第六步',
+    content: '其中又以路竹區下降最多達 <strong>21.6 %<strong/>',
+    stepEnterDown: function(...Arg){
+      
+      d3.selectAll('#slope-lines-1820 path, #slope-lines-20recall path')
+      .attr("stroke", "rgba(16, 14, 14, 0.2)")
+        .attr('stroke-width', 0.5)
+
+      // highlight maximum support rate
+      d3.select('#slope-lines-1820 #路竹區')
+        .attr("stroke", "#E42F8C")
+        .attr('stroke-width', 2)
+    },
+    stepEnterUp: function(...Arg){
+
+      d3.selectAll('#slope-lines-1820 path, #slope-lines-20recall path')
+      .attr("stroke", "rgba(16, 14, 14, 0.2)")
+        .attr('stroke-width', 0.5)
+
+      // highlight maximum support rate
+      d3.select('#slope-lines-1820 #路竹區')
+        .attr("stroke", "#E42F8C")
+        .attr('stroke-width', 2)
+    },
+    stepExitUp: function(...Arg){},
+    stepExitDown: function(...Arg){}
+  },
+  {
+    step: 7,
+    content: '那與總統大選相比，這次罷韓投票各區對韓國瑜支持率的變化又是如何呢？',
+    stepEnterDown: function(...Arg){},
+    stepEnterUp: function(...Arg){
+      d3.selectAll('#slope-lines-1820 path')
+        .attr("stroke", "rgba(16, 14, 14, 0.5)")
+        .attr('stroke-width', 0.5)
+
+      // remove slope lines group
+      d3.selectAll('._20recall')
+        .each(function(d) { d.totalLength = this.getTotalLength(); })
+        .transition()
+        .duration(400)
+        .attr("stroke-dashoffset", d => d.totalLength)
+        .remove()
+
+      d3.select('#slope-lines-20recall')
+        .transition()
+        .delay(400)
+        .remove()
+    },
+    stepExitUp: function(...Arg){
+    },
+    stepExitDown: function(...Arg){}
+  },
+  {
+    step: 8,
+    content: '##可以從圖表中看到，主要有 ... 種情況',
+    stepEnterDown: function(...Arg){
+      const slopeFormat20recall = Arg[0].slopeFormat.filter(d => d.vote_type !== '2018 直轄市長選舉 韓得票率')
+
+      d3.selectAll('#slope-lines-1820 path')
+        .attr("stroke", "rgba(16, 14, 14, 0.5)")
+        .attr('stroke-width', 0.5)
+
+      d3.select('#town-groups')
+          .append('g')
+          .attr('id', 'slope-lines-20recall')
+          .attr('fill', 'none')
+          .attr('stroke-width', 0.5)
+          .attr('stroke', 'rgba(16, 14, 14, 0.5)')
+        .selectAll("path")
+        .data(groups(slopeFormat20recall, d => d.TOWNNAME))
+        .enter()
+        .append('path')
+        .attr('class', '_20recall')
+        .attr('id', ([key ,]) => key)
+        .attr('d', ([, group]) => Arg[0].slopeLine(group))
+        .each(function(d) { d.totalLength = this.getTotalLength(); })
+        .attr('stroke-dasharray', d => d.totalLength  + " " + d.totalLength)
+        .attr('stroke-dashoffset', d => d.totalLength)
+        .transition()
+        .duration(500)
+        .attr('stroke-dashoffset', 0)
+    },
+    stepEnterUp: function(...Arg){
+      d3.selectAll('#slope-lines-1820 path, #slope-lines-20recall path')
+        .attr("stroke", "rgba(16, 14, 14, 0.5)")
+        .attr('stroke-width', 0.5)
+    },
+    stepExitUp: function(...Arg){},
+    stepExitDown: function(...Arg){}
+  },
+  {
+    step: 9,
+    content: '##其中呈現 ... 情況的有幾區',
     stepEnterDown: function(...Arg){},
     stepEnterUp: function(...Arg){},
     stepExitUp: function(...Arg){},

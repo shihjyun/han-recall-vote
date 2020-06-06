@@ -223,7 +223,7 @@
       .attr("markerHeight", 10)
       .attr("orient", "auto")
       .append("path")
-      .attr("d", `M${isMobile ? 15 : 20},0 L0,-3 L 0,3Z`)
+      .attr("d", `M${isMobile ? 10 : 20},0 L0,-3 L 0,3Z`)
       .attr("fill", "#272727");
 
     // set steop needed value to empty store
@@ -233,7 +233,6 @@
                       slopeLine}
 
     helperArgs.update(d => {
-						// poll is something we want to add
             return AddedArgs;
         });
     

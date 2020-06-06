@@ -10,7 +10,7 @@
         <a href="https://github.com/shihjyun/han-recall-vote"><img src="./static/images/mark-github.svg" alt="github"></a>
       </div>
     </div>
-  </footer>
+</footer>
 
 <style>
     .grid{

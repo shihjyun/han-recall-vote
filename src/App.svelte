@@ -48,14 +48,6 @@
 		text-align: left;
 	}
 
-	h1{
-		color: #272727;
-		font-weight:bold;
-		letter-spacing: 0.2em;
-		font-size: 3em;
-		font-family: 'Noto Sans TC';
-	}
-
 	h2{
 		color: #272727;
 		font-weight:bold;

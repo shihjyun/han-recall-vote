@@ -1,21 +1,36 @@
 <script>
-  import { onMount } from "svelte";
+  import { onMount, setContext } from "svelte";
   import StepCard from "../shared/StepCard.svelte";
   import Chart from "../component/Chart.svelte";
+  import InteractiveTool from "../component/InteractiveTool.svelte";
   import { stepInfo } from "../stores/StepInfo.js";
   import { helperArgs } from "../stores/RecallData.js";
+  import { highlightedTown } from "../stores/InteractiveParameter.js";
   import "intersection-observer";
   import scrollama from "scrollama";
   import * as d3 from "d3";
 
-
-
   let scrolly;
   let chartScope;
 
-  
-  
-  
+  const handleSlopeHighlight = (town) => {
+    const selectedLineID = `#slope-lines-1820 #${town}, #slope-lines-20recall #${town}`
+    const slopeChart = d3.select(chartScope)
+
+    slopeChart
+      .selectAll('#slope-lines-1820 path, #slope-lines-20recall path')
+      .attr("stroke", "rgba(16, 14, 14, 0.2)")
+        .attr('stroke-width', 0.5)
+
+    slopeChart
+      .selectAll(selectedLineID)
+      .attr("stroke", "#E42F8C")
+      .attr('stroke-width', 2)
+  }
+
+
+  // reactive zone
+  $: {handleSlopeHighlight($highlightedTown)}
 
   onMount(() => {
 
@@ -60,8 +75,8 @@
 </script>
 
 <div class="scrolly" bind:this={scrolly}>
-  <div class="figure">
-    <Chart />
+  <div class="figure" bind:this={chartScope}>
+    <Chart/>
   </div>
   <article>
     {#each $stepInfo as step}
@@ -69,6 +84,7 @@
     {/each}
   </article>
 </div>
+<InteractiveTool {chartScope}/>
 
 
 <style>
