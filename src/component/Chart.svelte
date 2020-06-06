@@ -23,6 +23,7 @@
   const town_padding = isMobile ? 12 : 14;
   const minVoteRate = d3.min(formatData.map((d) => d3.min([d.vote_rate_2018, d.vote_rate_2018, d.vote_rate_recall])))
   const maxVoteRate = d3.max(formatData.map((d) => d3.max([d.vote_rate_2018, d.vote_rate_2018, d.vote_rate_recall])))
+  const allVoteRate = formatData.map((d) => [d.vote_rate_2018, d.vote_rate_2018, d.vote_rate_recall]).flat()
   const minSupportRate = d3.min(formatData.map((d) => d3.min([d.han_votes_2018, d.han_votes_2020, d.han_votes_recall])))
   const maxSupportRate = d3.max(formatData.map((d) => d3.max([d.han_votes_2018, d.han_votes_2020, d.han_votes_recall])))
   let townGroupsWidth
@@ -45,9 +46,7 @@
       return isMobile ? 16 : 23
     }
   }
-  const voteRateColorScale = d3.scaleLinear()
-    .domain([minVoteRate, maxVoteRate])
-    .range(['#F6F6FC', '#DD008F'])
+  const voteRateColorScale = d3.scaleQuantile(allVoteRate, ['#fde3fa', '#ffbfde', '#fd99c2', '#f871a7', '#ff4390'])
 
   const arrowRotate = d3.scaleLinear()
     .domain([minSupportRate, maxSupportRate]) // support rate

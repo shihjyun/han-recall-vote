@@ -10,7 +10,6 @@
   // select box setting
   let inputStyles = 'border-color: #E42F8C; border-style: solid; border-width: 0 0 2px 0;'
   let townsList = $recallTownData.map(({ TOWNNAME }) => ({ value: TOWNNAME, label: TOWNNAME }))
-  console.log(townsList)
 
 
   let selectedValue = 'OO區';
