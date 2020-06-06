@@ -52,7 +52,7 @@
     .setup({
       step: stepSelection.nodes(),
       offset: midpoint,
-      debug: true,
+      debug: false,
     })
     .onStepEnter(response => {
 
