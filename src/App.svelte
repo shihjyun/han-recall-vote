@@ -12,7 +12,8 @@
 	<header id='intro'>
 		<HeaderCover/>
 		<h3>透過中選會數據一次帶你看盡三次投票中，高雄各區對韓國瑜的態度變化！</h3>
-		<p>製作｜Steven Yeo</p>
+		<p class="tiny-word">製作：Steven Yeo</p>
+		<p class="tiny-word">資料來源：<a href="https://www.cec.gov.tw/" target="_blank">中選會</a></p>
 	</header>
 	<section>
 		<p class="content">昨日(6/6)高雄市長罷免案以93.9萬張同意票成功罷免現任高雄市長韓國瑜，不管韓國瑜日後是否會提出罷免無效之訴，這也是台灣選舉史上第一次順利通過的罷免案。</p>
@@ -65,6 +66,9 @@
 		font-size: 1.2em;
 		font-family: 'Noto Sans TC';
 	}
+	p.tiny-word{
+		font-size: 0.9em;
+	}
 
 	@media screen and (max-width: 1023px) {
 	p{
@@ -78,6 +82,9 @@
 	}
 	h3{
 		padding: 0 6px;
+	}
+	p.tiny-word{
+		font-size: 0.8em;
 	}
 }
 </style>

@@ -4,10 +4,8 @@
 
 <footer>
     <div class="grid">
-      <p>製作：Steven Yeo</p>
-      <p>資料來源：中選會</p>
       <div class="github">
-        <a href="https://github.com/shihjyun/han-recall-vote"><img src="./static/images/mark-github.svg" alt="github"></a>
+        <a href="https://github.com/shihjyun/han-recall-vote" target="_blank"><img src="./static/images/mark-github.svg" alt="github"></a>
       </div>
     </div>
 </footer>
